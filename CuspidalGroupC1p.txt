@@ -1,4 +1,5 @@
-We compute the structure of the cuspidal group C1(p) of X1(p) for all 11 \le p \le 1000
+We compute the structure of the cuspidal group C1(p) of X1(p) for all 11 \le p \le 997
+For every prime p, we give a sequence [n1,..,nk] such that C1(p) = Z/n1 x ... x Z/nk
 
 11, [ 25 ] 
 13, [ 19, 19 ]
