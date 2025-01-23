@@ -1,8 +1,8 @@
-// this code computes the cuspidal groups C1(p) of X1(p) for prime level p
+// this code computes the cuspidal group C1(p) and the rational cuspidal group C1(p)(Q) of X1(p) for prime level p
 //  input the primes in the list below 
-// it outputs the list <p,C1(p)>, where p is  the prime and C1(p) the corresponding cuspidal group
-
-P := [] ; // we set this to  PrimesInInterval(11,100) for the cuspidal groups computed in the thesis 
+// it outputs the list <p,C1(p), C1(p)(Q)>, where p is  the prime and C1(p) the corresponding cuspidal group, and C1(p)(Q) is the rational cuspidal group 
+// the second output is a list <p, g1, g2>, where p is the prime, g1 is the list of orders of generators of C1(p) and g2 is the list of orders of generators of C1(p)(Q) 
+P := [] ; // we set this to  PrimesInInterval(11,1000) to compute the subgroups in files .... 
 
 M := [] ;
 
@@ -105,8 +105,12 @@ Ords2 := [ [ Integers() ! a : a in b ] : b in Ords2 ];
 rel2 := [ &+[a[i]*Z.i : i in [1..p-1] ] : a in Ords2 ];
 rel := rel1 cat rel2;
 
-CS := quo< T | rel >;
-<p, CS>;
+CS,pi := quo< T | rel >;
+CSS, pii := sub<CS | [ pi(Z.i - Z.s) : i in [1..s] ]>;
+<p, CS, CSS>; // this outputs the abstract groups
+g1  := [ Order(a) : a in Generators(CS) ];
+g2 := [ Order(a) : a in Generators(CSS) ];
+g1 := Sort(g1) ;
+g2 := Sort(g2) ;
+<p, g1, g2> ; // this outputs the list of orders of generators 
 end for ;
-
-
